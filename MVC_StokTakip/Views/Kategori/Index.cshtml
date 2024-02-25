@@ -1,0 +1,48 @@
+﻿@using MVC_StokTakip.Models.Entity
+@model List<Tbl_Kategoriler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<h2>Kategoriler</h2>
+
+<table id="tbl1" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Kategori Id</th>
+            <th>Kategori ADI</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ktgr in Model)
+        {
+            <tr>
+                <th>@ktgr.Kategoriid</th>
+                <td>@ktgr.KategoriAd</td>
+                @*<td><a href="/Kategori/Sil/@ktgr.Kategoriid" class="btn btn-danger">SİL</a></td>*@
+                <td>@Html.ActionLink("Sil", "Sil", new { id = ktgr.Kategoriid }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek istediğinize emin misiniz ?')" })</td>
+                <td><a href="/Kategori/KategoriGetir/@ktgr.Kategoriid" class="btn btn-success">GÜNCELLE</a></td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>
+<a href="/Kategori/YeniKategori/" class="btn btn-primary">Yeni Kategori Ekle</a>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+<link href="~/Content/DataTables/css/dataTables.jqueryui.css" rel="stylesheet" />
+
+<script>
+    $('#tbl1').DataTable({
+        language: {
+            url: "//cdn.datatables.net/plug-ins/1.10.22/i18n/Turkish.json"
+        }
+    });
+</script>

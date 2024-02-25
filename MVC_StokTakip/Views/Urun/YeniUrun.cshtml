@@ -1,0 +1,38 @@
+﻿@model MVC_StokTakip.Models.Entity.Tbl_Urunler
+@{
+    ViewBag.Title = "YeniUrun";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form class="form-check" method="post">
+    <h1>ÜRÜN EKLE</h1>
+    <div>
+        <label>Ürün Adı</label>
+        <input type="text" class="form-control" name="UrunAd" required="" maxlength="50" />
+        <label>Ürün Kategori</label>
+        @Html.DropDownListFor(i => i.UrunKategori, (List<SelectListItem>)ViewBag.deger, new { @class = "form-control" })
+        <label>Fiyat</label>
+        <input type="text" class="form-control" name="Fiyat" />
+        <label>Marka</label>
+        <input type="text" class="form-control" name="Marka" required="" maxlength="50" />
+        <label>Model</label>
+        <input type="text" class="form-control" name="Model" />
+        <label>Stok Adet</label>
+        <input type="text" class="form-control" name="Stok" />
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn1">Ekle</button>
+    </div>
+    <script>
+    $('#btn1').click(function () {
+        alert('Ürün eklendi!');
+    });
+    </script>
+</form>
+
+
+@*<form class="form-check" method="get" action="/Urun/Index">
+        <div style="margin-top:15px">
+            <button class="btn btn-danger" name="yeniViewButton">Ürünlere Dön</button>
+        </div>
+    </form>*@

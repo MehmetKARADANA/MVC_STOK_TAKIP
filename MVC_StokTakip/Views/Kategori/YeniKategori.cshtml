@@ -1,0 +1,33 @@
+﻿@model MVC_StokTakip.Models.Entity.Tbl_Kategoriler
+@{
+    ViewBag.Title = "YeniKategori";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form class="form-check" method="post">
+    <h1>KATEGORİ EKLE</h1>
+    @*<div>
+            <label>Kategori Adı</label>
+            <input type="text" class="form-control" name="KategoriAd" />
+        </div>*@
+    <div>
+        <label>Kategori Adı</label>
+        @Html.TextBoxFor(m => m.KategoriAd, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.KategoriAd, "", new { @style = "color:blue" })@*ikinci parametre textboxın altında sürekli görünüyor*@
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn1">Ekle</button>
+    </div>
+    <script>
+    $('#btn1').click(function () {
+        alert('Kategori eklendi!');
+    });
+    </script>
+</form>
+
+
+<form class="form-check" method="get" action="/Kategori/Index">
+    <div style="margin-top:15px">
+        <button class="btn btn-danger" name="yeniViewButton">Kategorilere Dön</button>
+    </div>
+</form>

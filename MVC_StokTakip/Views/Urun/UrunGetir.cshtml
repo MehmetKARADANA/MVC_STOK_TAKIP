@@ -1,0 +1,39 @@
+﻿@model MVC_StokTakip.Models.Entity.Tbl_Urunler
+@{
+    ViewBag.Title = "UrunGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle","Urun",FormMethod.Post)) {
+    <h1>Ürün GÜNCELLE</h1>
+    <div>
+        <label>Ürün Id</label>
+        @Html.TextBoxFor(m => m.Urunid, new { @class = "form-control" , @readonly = "readonly" })
+        <br />
+        <label>Ürün Adı</label>
+        @Html.TextBoxFor(m => m.UrunAd, new { @class = "form-control", @required = "required", @maxlength = "50" })
+        <br />
+        @*<label>Ürün Kategori</label>
+        @Html.TextBoxFor(m => m.Tbl_Kategoriler.KategoriAd, new { @class = "form-control" })text boxa urunün katgori bağından kategori adı getirior
+        <br />*@
+        @Html.DropDownListFor(i => i.Tbl_Kategoriler.Kategoriid, (List<SelectListItem>)ViewBag.deger, new { @class = "form-control" })
+        <br />                @*idyi post ediyor anlammında=urunkategori       değerleri aldığı kısım*@
+        <label>Fiyat</label>
+        @Html.TextBoxFor(m => m.Fiyat, new { @class = "form-control" })
+        <br />
+        <label>Marka</label>
+        @Html.TextBoxFor(m => m.Marka, new { @class = "form-control", @required = "required", @maxlength = "50" })
+        <br />
+        <label>Ürün Adı</label>
+        @Html.TextBoxFor(m => m.Model, new { @class = "form-control" })
+        <br />
+        <label>Stok Adet</label>
+        @Html.TextBoxFor(m => m.Stok, new { @class = "form-control" })
+        <br />
+    </div>
+    <div>
+        <button class="btn btn-warning">GÜNCELLE</button>
+    </div>
+
+}
+

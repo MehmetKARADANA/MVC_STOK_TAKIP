@@ -1,0 +1,88 @@
+﻿@model MVC_StokTakip.Models.CustomModel.SatisViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Satışlar</h2>
+<table id="tbl1" class="table table-bordered">
+    <thead>
+
+        <tr>
+            <td><b>Satış Id</b></td>
+            <td><b>Ürün</b></td>
+            <td><b>Müşteri</b></td>
+            <td><b>Adet</b></td>
+            <td><b>Fiyat</b></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var satis in Model.Satis)
+        {
+            <tr>
+                <td>@satis.Satisid</td>
+                <td>@satis.Tbl_Urunler.UrunAd</td>
+                <td>@satis.Tbl_Musteri.MusteriAd @satis.Tbl_Musteri.MusteriSoyad</td>
+                <td>@satis.Adet</td>
+                <td>@satis.Fiyat</td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>
+<button class="btn btn-primary" data-toggle="modal" data-target="#modal1">Satış Yap</button>
+
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+<link href="~/Content/DataTables/css/dataTables.jqueryui.css" rel="stylesheet" />
+
+<script>
+    $('#tbl1').DataTable({
+        language: {
+            url: "//cdn.datatables.net/plug-ins/1.10.22/i18n/Turkish.json"
+        }
+    });
+</script>
+
+<div class="modal" id="modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Satış Yapma Ekranı</h2>
+            </div>
+            @using (Html.BeginForm("YeniSatis", "Satis", FormMethod.Post))
+            {
+                <div class="modal-body">
+                    <label>Ürün Adı</label>
+                    @*<input type="text" class="form-control" name="Urun" />*@
+                    @*@Html.TextBoxFor(Model => Model.yenisatis.Urun, new { @class = "form-control" })*@
+                    @Html.DropDownList("yenisatis.Urun", (List<SelectListItem>)ViewBag.deger, new { @class = "form-control" })
+                    <br />              @*ALDIĞI VİEWBAGİN TÜRÜNDEN DOLAYI*@
+                    <label>Müşteri</label>
+                    @*<input type="text" class="form-control" name="Musteri" />*@
+                    @*@Html.TextBoxFor(Model => Model.yenisatis.Musteri, new { @class = "form-control" })*@
+                    @Html.DropDownList("yenisatis.Musteri", (List<SelectListItem>)ViewBag.deger3, new { @class = "form-control" })
+                    <br />
+                    <label>Adet</label>
+                    @*<input type="text" class="form-control" name="Adet" />*@
+                    @Html.TextBoxFor(Model => Model.yenisatis.Adet, new { @class = "form-control" })
+                    <br />
+                    <label>Fiyat</label>
+                    @*<input type="text" class="form-control" name="Fiyat" />*@
+                    @Html.TextBoxFor(Model => Model.yenisatis.Fiyat, new { @class = "form-control" })
+                    <br />
+                    <button type="submit" class="btn btn-warning">Ekle</button>
+                    <button class="btn btn-danger" data-dismiss="modal">Vazgeç</button>
+                </div>
+
+
+            }
+        </div>
+    </div>
+
+
+</div>
+

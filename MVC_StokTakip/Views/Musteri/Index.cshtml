@@ -1,0 +1,50 @@
+﻿@using MVC_StokTakip.Models.Entity
+@model  List<Tbl_Musteri>
+@using PagedList
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+   <h2>Müşteriler</h2>
+
+<table id="tbl1" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Müşteri Id</th>
+            <th>Müşteri ADI</th>
+            <th>Müşteri SOYADI</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var musteri in Model)
+        {
+            <tr>
+                <th>@musteri.Musteriid</th>
+                <td>@musteri.MusteriAd</td>
+                <td>@musteri.MusteriSoyad</td>
+                <td><a href="/Musteri/Sil/@musteri.Musteriid" class="btn btn-danger">SİL</a></td>
+                <td><a href="/Musteri//MusteriGetir/@musteri.Musteriid" class="btn btn-success">GÜNCELLE</a></td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<a href="/Musteri/YeniMusteri/" class="btn btn-primary">Yeni Müşteri Ekle</a>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<link href="~/Content/DataTables/css/dataTables.jqueryui.css" rel="stylesheet" />
+<script type="text/javascript" src="~/js/dataTables.turkish.js"></script>
+
+<script>
+    $('#tbl1').DataTable({
+        language: {
+            url: "//cdn.datatables.net/plug-ins/1.10.22/i18n/Turkish.json"
+        }
+    });
+</script>
